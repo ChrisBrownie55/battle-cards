@@ -83,10 +83,13 @@ export default new Vuex.Store({
       }
     },
 
-    async getGame({ commit }, gameId) {
+    async getGame({ dispatch, commit }, gameId) {
       try {
         const game = await gameAPI.get(gameId);
         commit('setGame', game.data.data);
+        if (game.data.data.over) {
+          setTimeout(() => dispatch('deleteGame'), 2600);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -97,7 +100,7 @@ export default new Vuex.Store({
         return;
       }
       try {
-        await gameAPI.delete(state.game.id)
+        await gameAPI.delete(state.game.id);
         commit('setGame', {});
         router.push('/');
       } catch (error) {
