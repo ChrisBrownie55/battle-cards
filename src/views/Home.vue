@@ -3,21 +3,24 @@
     <form @submit.prevent='newGame'>
       <label for='name'>Enter your name below.</label>
       <input id='name' placeholder='Bob' type='text' v-model='name' name='name' autocomplete='off' required />
-      <button type='submit'>New Game</button>
+      <button type='submit' :disabled='creatingGame'>New Game</button>
     </form>
   </main>
 </template>
 
 <script>
 export default {
+  name: 'Home',
   data() {
     return {
-      name: ''
+      name: '',
+      creatingGame: false
     };
   },
   methods: {
-    newGame() {
-      this.$store.dispatch('createGame', this.name);
+    async newGame() {
+      this.creatingGame = true;
+      await this.$store.dispatch('createGame', this.name);
     }
   }
 };
@@ -61,21 +64,6 @@ input {
 }
 
 button {
-  background: none;
-  color: #eee;
-  border: solid 1px var(--vue-green);
-  border-radius: 0.2rem;
-  padding: 0.3rem 0.75rem;
-  margin-top: 1rem;
   opacity: 0;
-  transition: opacity 0.2s, background-color 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--vue-green);
-  }
-  &:focus {
-    outline: none;
-  }
 }
 </style>

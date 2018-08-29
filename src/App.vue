@@ -26,4 +26,22 @@ body {
   padding: 0;
   margin: 0;
 }
+
+button {
+  background: none;
+  color: #eee;
+  border: solid 1px var(--vue-green);
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.75rem;
+  margin-top: 1rem;
+  transition: opacity 0.2s, background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--vue-green);
+  }
+  &:focus {
+    outline: none;
+  }
+}
 </style>
