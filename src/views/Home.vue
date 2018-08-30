@@ -119,6 +119,8 @@ input {
   padding: 0.5rem;
   text-align: center;
   transition: background-color 0.2s;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 
   &:focus {
     outline: none;

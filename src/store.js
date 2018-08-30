@@ -88,7 +88,9 @@ export default new Vuex.Store({
         const game = await gameAPI.get(gameId);
         commit('setGame', game.data.data);
         if (game.data.data.over) {
-          setTimeout(() => dispatch('deleteGame'), 2600);
+          setTimeout(() => {
+            dispatch('deleteGame');
+          }, 2600);
         }
       } catch (error) {
         console.error(error);

@@ -36,12 +36,30 @@ button {
   margin-top: 1rem;
   transition: opacity 0.2s, background-color 0.2s;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     background-color: var(--vue-green);
   }
+  &::after {
+    content: '';
+    border: solid 0rem;
+    border-color: var(--vue-green);
+    opacity: 0.5;
+    border-radius: 0.2rem;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition: border-width 0.2s;
+  }
   &:focus {
     outline: none;
+    &::after {
+      border-width: 0.25rem 0.3rem;
+    }
   }
 }
 </style>

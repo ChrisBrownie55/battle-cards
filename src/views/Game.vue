@@ -15,7 +15,7 @@
         <Card class='card' v-for='(cardData, index) in player.hand' :key='index' :cardData='cardData' :selected='playerCard === cardData.id' @selected='selectPlayer' isPlayerCard />
       </section>
     </div>
-    <div v-if='over'>
+    <div class='game-over-notifications' v-if='over'>
       <div v-if='winner === "Cats Game"'>
         <h1 class='winner-title'>Tie Game</h1>
         <div class='sad'>
@@ -24,7 +24,7 @@
       </div>
       <div v-else>
         <h1 class='winner-title'>The Winner Is</h1>
-        <h1 class='winner-name'></h1>
+        <h1 class='winner-name'>{{winner.name}}</h1>
       </div>
     </div>
   </main>
@@ -91,13 +91,13 @@ export default {
 
 <style scoped lang='scss'>
 .game {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100%;
 
   .game-wrapper {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     transition: opacity 0.3s;
     &.over {
       opacity: 0;
@@ -200,5 +200,17 @@ export default {
   border-top: solid 1px currentColor;
   border-left: solid 1px transparent;
   border-right: solid 1px transparent;
+}
+
+.game-over-notifications {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>
