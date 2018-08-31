@@ -6,14 +6,14 @@
         <button class='quit' @click='quit'>End game</button>
       </details>
       <section class='cards opponent'>
-        <Card v-for='(cardData, index) in opponent.hand' :key='index' :cardData='cardData' @selected='selectOpponent' :selected='opponentCard === cardData.id' />
+        <Card v-for='(cardData, index) in opponent.hand' :key='index' :cardData='cardData' @selected='selectOpponent' :selected='opponentCard === cardData.id' :dying='cardData.dead' />
         <h4 class='name'>
           <div>{{opponent.name}}</div>
         </h4>
       </section>
       <button :class='{ play: true, visible: playerCard && opponentCard }' :disabled='!playerCard || !opponentCard' @click='fight'>FIGHT</button>
       <section class='cards player'>
-        <Card v-for='(cardData, index) in player.hand' :key='index' :cardData='cardData' :selected='playerCard === cardData.id' @selected='selectPlayer' isPlayerCard />
+        <Card v-for='(cardData, index) in player.hand' :key='index' :cardData='cardData' :selected='playerCard === cardData.id' @selected='selectPlayer' :dying='cardData.dead' isPlayerCard />
         <h4 class='name'>
           <div>{{player.name}}</div>
         </h4>
@@ -135,15 +135,6 @@ export default {
       }
     }
   }
-
-  // .card.selected ~ .name,
-  // .card:hover ~ .name {
-  //   transform: translateY(-1rem);
-  // }
-  // &.opponent .card.selected ~ .name,
-  // &.opponent .card:hover ~ .name {
-  //   transform: translateY(1rem);
-  // }
 }
 
 .play {
@@ -152,8 +143,10 @@ export default {
   margin: 0 auto;
   opacity: 0;
   transition: opacity 0.2s, background-color 0.2s;
+  pointer-events: none;
 
   &.visible {
+    pointer-events: unset;
     opacity: 1;
   }
 }

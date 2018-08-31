@@ -18,7 +18,32 @@ export default new Vuex.Store({
   },
   mutations: {
     setGame(state, game) {
-      state.game = game;
+      let deadCards = false;
+      if (state.game.players && !game.over) {
+        game.players.forEach((player, index) => {
+          
+          const cardsById = state.game.players[index].hand.reduce(
+            (obj, card) => {
+              obj[card.id] = card;
+              return obj;
+            },
+            {}
+          );
+          
+          player.deadCards.forEach(card => {
+            if (cardsById[card.id]) {
+              cardsById[card.id].dead = true;
+              deadCards = true;
+            }
+          });
+        });
+      }
+
+      if (deadCards) {
+        setTimeout(() => (state.game = game), 1000)
+      } else {
+        state.game = game;
+      }
     },
     selectPlayerCard(state, id) {
       state.playerCard = id;
