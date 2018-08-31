@@ -56,9 +56,10 @@ button {
     transition: border-width 0.2s;
   }
   &:focus {
+    background-color: var(--vue-green);
     outline: none;
     &::after {
-      border-width: 0.25rem 0.3rem;
+      border-width: 0.3rem 0.3rem;
     }
   }
 }

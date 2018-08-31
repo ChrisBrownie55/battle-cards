@@ -19,6 +19,7 @@
       </svg>
       <p>{{cardData.health}}</p>
     </div>
+    <p class='name'>{{cardData.name}}</p>
   </article>
 </template>
 
@@ -31,7 +32,8 @@ export default {
       required: true
     },
     isPlayerCard: Boolean,
-    selected: Boolean
+    selected: Boolean,
+    dying: Boolean
   },
   computed: {
     visible() {
@@ -43,12 +45,12 @@ export default {
 
 <style scoped lang='scss'>
 .card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   --size: 8rem;
   width: var(--size);
   height: calc(var(--size) * 1.4);
   position: relative;
   margin: 1rem;
-  overflow: hidden;
   border-radius: 0.15rem;
   background-color: hsl(0, 0%, 98%);
   transition: transform 0.2s, background-color 0.2s;
@@ -125,6 +127,34 @@ export default {
   .health {
     bottom: var(--dist);
     left: var(--dist);
+  }
+  .name {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: -2rem;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+  }
+  &.visible {
+    &:hover .name,
+    &.selected .name {
+      opacity: 1;
+    }
+  }
+  &.isPlayer .name {
+    top: unset;
+    bottom: -2rem;
+
+    &:hover .name,
+    &.selected .name {
+      opacity: 1;
+    }
   }
 }
 </style>

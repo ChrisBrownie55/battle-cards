@@ -63,7 +63,7 @@ export default new Vuex.Store({
       commit('selectPlayerCard', state.playerCard === id ? '' : id);
     },
 
-    async fight({ commit, state }) {
+    async fight({ dispatch, commit, state }) {
       if (!state.playerCard || !state.opponentCard || !state.game.players) {
         return;
       }
@@ -74,8 +74,7 @@ export default new Vuex.Store({
           playerCardId: state.playerCard,
           opponentCardId: state.opponentCard
         });
-        const game = await gameAPI.get(state.game.id);
-        commit('setGame', game.data.data);
+        dispatch('getGame', state.game.id);
         commit('selectPlayerCard', '');
         commit('selectOpponentCard', '');
       } catch (error) {
@@ -104,7 +103,7 @@ export default new Vuex.Store({
       try {
         await gameAPI.delete(state.game.id);
         commit('setGame', {});
-        router.push('/');
+        router.push({ name: 'home' });
       } catch (error) {
         console.error(error);
       }
