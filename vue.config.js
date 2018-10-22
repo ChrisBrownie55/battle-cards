@@ -1,6 +1,6 @@
 module.exports = {
   lintOnSave: false,
-  baseUrl: '/battle-cards/',
+  baseUrl: 'https://chrisbrownie55.github.io/battle-cards',
   outputDir: undefined,
   assetsDir: undefined,
   runtimeCompiler: undefined,
