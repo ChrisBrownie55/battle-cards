@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4b8bdde5c9a8fdba6e2886e07d5c74fa.js"
+  "/battle-cards/precache-manifest.5af41feca0cc6460d7d246e617cbc417.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "new"});
