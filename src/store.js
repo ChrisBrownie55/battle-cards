@@ -50,6 +50,11 @@ export default new Vuex.Store({
     },
     selectOpponentCard(state, id) {
       state.opponentCard = id;
+    },
+    clearGame(state) {
+      state.game = {}
+      state.opponentCard = ''
+      state.playerCard = ''
     }
   },
   actions: {
@@ -127,7 +132,7 @@ export default new Vuex.Store({
       }
       try {
         await gameAPI.delete(state.game.id);
-        commit('setGame', {});
+        commit('clearGame');
         router.push({ name: 'home' });
       } catch (error) {
         console.error(error);
