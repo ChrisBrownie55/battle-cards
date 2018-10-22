@@ -1,6 +1,8 @@
 module.exports = {
   lintOnSave: false,
-  baseUrl: 'https://chrisbrownie55.github.io/battle-cards',
+  baseUrl: process.env.NODE_ENV === 'production'
+    ? '/battle-cards'
+    : '/',
   outputDir: undefined,
   assetsDir: undefined,
   runtimeCompiler: undefined,
