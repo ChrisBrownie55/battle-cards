@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "https://chrisbrownie55.github.io/battle-cards/js/app.7b6f077a.js"
   },
   {
-    "revision": "1c1b522bfab21d1dfca7ae9cb083cb86",
+    "revision": "64f554a4da4737c5538a2b1b2a693421",
     "url": "https://chrisbrownie55.github.io/battle-cards/index.html"
   },
   {
