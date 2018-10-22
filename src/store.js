@@ -21,7 +21,7 @@ export default new Vuex.Store({
       let deadCards = false;
       if (state.game.players && !game.over) {
         game.players.forEach((player, index) => {
-          
+
           const cardsById = state.game.players[index].hand.reduce(
             (obj, card) => {
               obj[card.id] = card;
@@ -29,7 +29,7 @@ export default new Vuex.Store({
             },
             {}
           );
-          
+
           player.deadCards.forEach(card => {
             if (cardsById[card.id]) {
               cardsById[card.id].dead = true;
